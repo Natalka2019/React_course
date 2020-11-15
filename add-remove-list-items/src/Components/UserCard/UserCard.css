@@ -1,0 +1,44 @@
+.UserCard {
+  width: 300px;
+  border: 1px solid grey;
+  box-shadow: 5px 6px 6px 6px #888888;
+  margin: 20px;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  overflow: hidden;
+  align-content: left;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+}
+.addressCompanyContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.addressContainer {
+  position: relative;
+  display: block;
+  float: left;
+  margin: 5px 10px 5px 0;
+  padding: 5px;
+  border: 1px solid rgb(231, 227, 227);
+}
+.companyContainer {
+  position: relative;
+  display: block;
+  margin: 5px 10px 5px 0;
+  padding: 5px;
+  border: 1px solid rgb(231, 227, 227);
+}
+a {
+  text-decoration: none;
+}
+.companyName {
+  color: rgba(3, 95, 3, 0.822);
+}
+.cardDeleteButtonContainer {
+  position: relative;
+  margin-bottom: 5px;
+  margin-top: auto;
+}
