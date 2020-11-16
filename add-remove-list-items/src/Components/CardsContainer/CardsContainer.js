@@ -15,7 +15,7 @@ const CardsContainer = ({users}) => {
   return (
     <div className = "CardsContainer">
     {users.map( (element, index) => (
-      <UserCard {...element} key = {element.id} removeUser = {removeUser} currentIndex = {index}/>
+      <UserCard {...element} key = {element.email? element.email : index} removeUser = {removeUser} currentIndex = {index}/>
     ))}
   </div>
   )

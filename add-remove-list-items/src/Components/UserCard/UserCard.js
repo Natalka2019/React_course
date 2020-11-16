@@ -4,7 +4,7 @@ import Button from '../Button/Button';
 
 
 
-const UserCard = ({name, username, email, address = "-", phone, website, company = "-", removeUser, currentIndex, eventOnClick}) => {
+const UserCard = ({name, username, email, address = "-", phone, website, company = "-", removeUser, currentIndex}) => {
 
   const {street, suite, city, zipcode} = address;
   const {name:companyName, catchPhrase, bs} = company;

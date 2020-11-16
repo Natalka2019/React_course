@@ -15,7 +15,7 @@ function App() {
     setToggle(!isShown)
   }
 
-  const cardClass = isShown? 'modalOverlay showModal' : 'modalOverlay'
+  const cardClass = isShown? 'modalOverlay showModal' : 'modalOverlay';
 
   const [usersState, setUsersState] = useState({
     users: {users}
@@ -27,7 +27,9 @@ function App() {
 
     setUsersState(users.push(newUser));
 
-  }
+    console.log(users);
+
+  };
 
   return (
     <div className="App">
@@ -35,7 +37,6 @@ function App() {
         modalClass ={cardClass}
         closeModal = {e => modalWindowHandler(e)}
         addUser = {(e, newUser) => addUser(e, newUser)}
-        currentUserId = {users.length}
         />
       <div className = "AppHeader">
         <Button className = "addUserButton" title = "Add user" eventOnClick = {e => modalWindowHandler(e)}/>

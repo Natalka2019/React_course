@@ -2,15 +2,16 @@ import React, {useState} from 'react';
 import './Modal.css';
 import Button from '../Button/Button';
 
-const Modal = ({modalClass, closeModal, addUser, currentUserId}) => {
+const Modal = ({modalClass, closeModal, addUser}) => {
  
 
   const [newUser, setUserState] = useState({
-    id: '',
+
     name: '',
     username: '',
     email: '',
     phone: ''
+    
   });
   
   const onNameChange = (e) => {
@@ -19,8 +20,7 @@ const Modal = ({modalClass, closeModal, addUser, currentUserId}) => {
 
     setUserState( {
       ...newUser,
-      [e.target.name]: value,
-      id: currentUserId +=1,
+      [e.target.name]: value
     });
 
   };
@@ -29,11 +29,12 @@ const Modal = ({modalClass, closeModal, addUser, currentUserId}) => {
     e.preventDefault();
 
     setUserState( {
-      id: '',
+
       name: '',
       username: '',
       email: '',
       phone: ''
+
     });
   }
 

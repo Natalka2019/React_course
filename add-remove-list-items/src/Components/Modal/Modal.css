@@ -43,6 +43,5 @@
   float: right;
 }
 .modalCloseButton:hover, .modalCloseButton:active {
-  cursor: pointer;
   background-color: rgb(150, 11, 11);
 }
