@@ -1,0 +1,29 @@
+.buttonStandard {
+  width: 100px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  margin: 10px;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  padding: 3px;
+  position: relative;
+}
+.addUserButton {
+  background-color: rgb(18, 117, 18);
+  margin-right: 10px;
+  margin-left: auto;
+}
+.deleteUserButton {
+  background-color: rgb(218, 15, 15);
+  margin: auto 10px 5px auto;
+}
+.addUserButton:hover, .addUserButton:active {
+  background-color: rgb(9, 63, 9);
+}
+.deleteUserButton:hover, .deleteUserButton:active {
+  background-color: rgb(150, 11, 11);
+}
