@@ -6,7 +6,7 @@ class Modal extends React.Component {
   constructor(props) {
     super(props);
     
-    this.state = {
+    this.initialState = {
 
         name: '',
         username: '',
@@ -15,13 +15,13 @@ class Modal extends React.Component {
 
     };
 
+    this.state = this.initialState;
+
     this.onNameChange = this.onNameChange.bind(this);
     this.clearNewUser  = this.clearNewUser .bind(this);
   }
   
- onNameChange (e) {
-
- let lastId = this.props.currentUserId;
+  onNameChange (e) {
 
     this.setState( {
 
@@ -34,19 +34,12 @@ class Modal extends React.Component {
   clearNewUser (e) {
     e.preventDefault();
 
-    this.setState( {
-
-      name: '',
-      username: '',
-      email: '',
-      phone: ''
-      
-    });
+    this.setState( this.initialState );
   }
 
   render() {
 
-    const {modalClass, closeModal, addUser, currentUserId} = this.props;
+    const {modalClass, closeModal, addUser} = this.props;
     const newUser = this.state;
 
     return (
