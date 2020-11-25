@@ -7,10 +7,14 @@
   box-sizing: border-box;
   overflow: hidden;
   align-content: left;
-  background-color: white;
+  background-color:rgb(250, 249, 249);
   display: flex;
   flex-direction: column;
 }
+.UserCard:hover {
+  box-shadow: 5px 6px 6px 6px #06751e;
+  transform: translateY(5px);
+} 
 .addressCompanyContainer {
   display: flex;
   flex-direction: row;

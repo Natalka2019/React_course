@@ -1,18 +1,20 @@
 import React from 'react';
+
 import './CardsContainer.css';
+
 import UserCard from '../UserCard/UserCard';
 
 class CardsContainer extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {cardItems: this.props.users};
-
     this.removeUser = this.removeUser.bind(this); 
 
   }
 
-  removeUser (index) {
+  removeUser (index, e) {
+    e.preventDefault();
+    e.stopPropagation();
 
     this.props.users.splice(index, 1);
     
@@ -22,13 +24,20 @@ class CardsContainer extends React.Component {
 
   render() {
 
-    const {cardItems} = this.state;
+    const cardItems = this.props.users;
 
     return (
       <div className = "CardsContainer">
-      {cardItems.map( (element, index) => (
-        <UserCard {...element} key = {element.email? element.email : index} removeUser = {this.removeUser} currentIndex = {index}/>
-      ))}
+        {cardItems.map( (element, index) => (
+
+          <UserCard 
+          {...element} 
+          key = {`key- ${ Symbol(index).toString() }`} 
+          removeUser = {this.removeUser} 
+          currentIndex = {index}
+          />
+
+        ))}
     </div>
     )
   }

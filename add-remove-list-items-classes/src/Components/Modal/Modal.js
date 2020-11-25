@@ -1,5 +1,7 @@
 import React from 'react';
+
 import './Modal.css';
+
 import Button from '../Button/Button';
 
 class Modal extends React.Component {

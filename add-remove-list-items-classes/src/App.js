@@ -1,108 +1,59 @@
 import React from 'react';
+import {BrowserRouter, Route, Link, Switch} from 'react-router-dom';
+
 import './App.css';
-import CardsContainer from './Components/CardsContainer/CardsContainer.js';
-import Button from './Components/Button/Button';
-import Modal from './Components/Modal/Modal';
-import {users} from './users.js';
+
+import CardsMainPage from './Components/CardsMainPage/CardsMainPage';
+import UserPage from './Components/UserPage/UserPage';
+
 
 class App extends React.Component {
-  constructor(props) {
+
+  constructor (props) {
 
     super(props);
 
     this.state = {
-      isShown: false,
-      listOfUsers: users
-    };
 
-    this.modalWindowHandler = this.modalWindowHandler.bind(this);
-    this.addUser = this.addUser.bind(this);
+      user: {},
+      posts: [],
+    }
 
+    this.updateUserAndPosts = this.updateUserAndPosts.bind(this);
   }
 
-  modalWindowHandler (e)  {
-    e.preventDefault();
-    e.stopPropagation();
+  updateUserAndPosts(chosenUser, chosenPosts) {
 
-    this.setState({isShown: !this.state.isShown})
-  }
-
+    this.setState({
+      user: chosenUser,
+      posts: chosenPosts,
+    });
   
-
-  addUser (e, newUser) {
-    e.preventDefault();
-    e.stopPropagation();
-
-    users.push(newUser);
-    this.setState({listOfUsers: users});
-
   }
 
   render() {
 
-    const cardClass = this.state.isShown? 'modalOverlay showModal' : 'modalOverlay';
+    const {user, posts} = this.state;
 
     return (
-      <div className="App">
-        <Modal
-          modalClass ={cardClass}
-          closeModal = {e => this.modalWindowHandler(e)}
-          addUser = {(e, newUser) => this.addUser(e, newUser)}
-          />
-        <div className = "AppHeader">
-          <Button className = "addUserButton" title = "Add user" eventOnClick = {e => this.modalWindowHandler(e)}/>
+      <BrowserRouter>
+        <div className="App">
+          <div className="AppHeader">
+            <ul>
+              <li><Link to = '/'>All users</Link></li>
+            </ul>
+          </div>
+          <Switch>
+            <Route path = '/' exact render = {routerProps => <CardsMainPage {...routerProps} findSelectedUser = {this.updateUserAndPosts}/>}/>
+            <Route path = '/user/:id' render = {routerProps => <UserPage {...routerProps} userToBeRendered = {user} postsToBeRendered = {posts}/> } />
+          </Switch>  
         </div>
-        <div className = "AppBody">
-          <CardsContainer users = {users}/>
-        </div>
-      </div>
+      </BrowserRouter>
+
+        
     );
   }
 }
 
 export default App;
-
-// function App() {
-//   const [isShown, setToggle] = useState(false);
-
-//   const modalWindowHandler = (e) => {
-//     e.preventDefault();
-//     e.stopPropagation();
-
-//     setToggle(!isShown)
-//   }
-
-//   const cardClass = isShown? 'modalOverlay showModal' : 'modalOverlay'
-
-//   const [usersState, setUsersState] = useState({
-//     users: {users}
-//   });
-
-//   const addUser = (e, newUser) => {
-//     e.preventDefault();
-//     e.stopPropagation();
-
-//     setUsersState(users.push(newUser));
-
-//   }
-
-//   return (
-//     <div className="App">
-//       <Modal
-//         modalClass ={cardClass}
-//         closeModal = {e => modalWindowHandler(e)}
-//         addUser = {(e, newUser) => addUser(e, newUser)}
-//         currentUserId = {users.length}
-//         />
-//       <div className = "AppHeader">
-//         <Button className = "addUserButton" title = "Add user" eventOnClick = {e => modalWindowHandler(e)}/>
-//       </div>
-//       <div className = "AppBody">
-//         <CardsContainer users = {users}/>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default App;
 
