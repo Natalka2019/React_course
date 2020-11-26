@@ -29,9 +29,8 @@ class CardsContainer extends React.Component {
     return (
       <div className = "CardsContainer">
         {cardItems.map( (element, index) => (
-
           <UserCard 
-          {...element} 
+          cardDetails = {element} 
           key = {`key- ${ Symbol(index).toString() }`} 
           removeUser = {this.removeUser} 
           currentIndex = {index}

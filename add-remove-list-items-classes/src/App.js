@@ -15,7 +15,7 @@ class App extends React.Component {
 
     this.state = {
 
-      user: {},
+      userToBeRendered: {},
       posts: [],
     }
 
@@ -25,15 +25,15 @@ class App extends React.Component {
   updateUserAndPosts(chosenUser, chosenPosts) {
 
     this.setState({
-      user: chosenUser,
+      userToBeRendered: chosenUser,
       posts: chosenPosts,
     });
-  
+
   }
 
   render() {
 
-    const {user, posts} = this.state;
+    const {userToBeRendered, posts} = this.state;
 
     return (
       <BrowserRouter>
@@ -45,7 +45,7 @@ class App extends React.Component {
           </div>
           <Switch>
             <Route path = '/' exact render = {routerProps => <CardsMainPage {...routerProps} findSelectedUser = {this.updateUserAndPosts}/>}/>
-            <Route path = '/user/:id' render = {routerProps => <UserPage {...routerProps} userToBeRendered = {user} postsToBeRendered = {posts}/> } />
+            <Route path = '/user/:id' render = {routerProps => <UserPage {...routerProps} user = {userToBeRendered} postsToBeRendered = {posts}/> } />
           </Switch>  
         </div>
       </BrowserRouter>

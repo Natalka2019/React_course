@@ -2,19 +2,3 @@
   background-color: rgba(228, 225, 225, 0.8);
   padding: 10px 0 10px 0;
 }
-.UserPage .userPageInfo {
-  border: 1px solid green;
-  margin: 20px 30px;
-  padding: 20px;
-  background-color: rgb(255,255,255);
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
- .UserPage .addressCompanyContainer {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin-right: 30px;
-  margin-left: auto;
-}
