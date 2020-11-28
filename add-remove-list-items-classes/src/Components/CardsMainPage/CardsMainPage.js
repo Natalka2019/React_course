@@ -26,6 +26,7 @@ class CardsMainPage extends React.Component {
     this.modalWindowHandler = this.modalWindowHandler.bind(this);
     this.addUser = this.addUser.bind(this);
     this.extractUserPosts = this.extractUserPosts.bind(this);
+    this.removeUserHandler = this.removeUserHandler.bind(this);
 
   }
 
@@ -55,12 +56,24 @@ class CardsMainPage extends React.Component {
     e.preventDefault();
     e.stopPropagation();
 
-    const usersArray = this.state.listOfUsers;
+    const usersArray = [...this.state.listOfUsers];
 
     usersArray.push(newUser);
     this.setState({listOfUsers: usersArray});
 
   }
+
+  removeUserHandler (index, e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const users = [...this.state.listOfUsers];
+
+    users.splice(index, 1);
+    
+    this.setState({listOfUsers: users});
+
+  };
 
   extractUserPosts(e) {
 
@@ -102,6 +115,7 @@ class CardsMainPage extends React.Component {
         <div className = "CardsMainPageBody" onClick = {e => this.extractUserPosts(e)}>
           <CardsContainer
             users = {this.state.listOfUsers}
+            removeUserHandler = {this.removeUserHandler}
             />
         </div>
         
