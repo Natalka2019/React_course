@@ -1,52 +1,45 @@
 import React, {useState} from 'react';
+import {BrowserRouter, Route, Link, Switch} from 'react-router-dom';
+
 import './App.css';
-import CardsContainer from './Components/CardsContainer/CardsContainer.js';
-import Button from './Components/Button/Button';
-import Modal from './Components/Modal/Modal';
-import {users} from './users.js';
 
-function App() {
-  const [isShown, setToggle] = useState(false);
+import CardsMainPage from './Components/CardsMainPage/CardsMainPage';
+import UserPage from './Components/UserPage/UserPage';
 
-  const modalWindowHandler = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
 
-    setToggle(!isShown)
-  }
+const App = () => {
 
-  const cardClass = isShown? 'modalOverlay showModal' : 'modalOverlay';
+  const [state, setState] = useState( {
 
-  const [usersState, setUsersState] = useState({
-    users: {users}
+    userToBeRendered: {},
+    posts: [],
+
   });
 
-  const addUser = (e, newUser) => {
-    e.preventDefault();
-    e.stopPropagation();
+  const updateUserAndPosts = (chosenUser, chosenPosts) => {
 
-    setUsersState(users.push(newUser));
+    setState({
+      userToBeRendered: chosenUser,
+      posts: chosenPosts,
+    });
 
-    console.log(users);
-
-  };
+  }
 
   return (
-    <div className="App">
-      <Modal
-        modalClass ={cardClass}
-        closeModal = {e => modalWindowHandler(e)}
-        addUser = {(e, newUser) => addUser(e, newUser)}
-        />
-      <div className = "AppHeader">
-        <Button className = "addUserButton" title = "Add user" eventOnClick = {e => modalWindowHandler(e)}/>
+    <BrowserRouter>
+      <div className="App">
+        <div className="AppHeader">
+          <ul>
+            <li><Link to = '/'>All users</Link></li>
+          </ul>
+        </div>
+        <Switch>
+          <Route path = '/' exact render = {routerProps => <CardsMainPage {...routerProps} findSelectedUser = {updateUserAndPosts}/>}/>
+          <Route path = '/user/:id' render = {routerProps => <UserPage {...routerProps} user = {state.userToBeRendered} postsToBeRendered = {state.posts}/> } />
+        </Switch>  
       </div>
-      <div className = "AppBody">
-        <CardsContainer users = {users}/>
-      </div>
-    </div>
+    </BrowserRouter>   
   );
 }
 
 export default App;
-

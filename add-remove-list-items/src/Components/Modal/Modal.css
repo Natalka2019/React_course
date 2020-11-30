@@ -39,9 +39,11 @@
   float: right;
 }
 .modalAddButton:hover, .modalAddButton:active {
-  background-color: rgb(9, 63, 9);
+  background-color: rgb(80, 187, 80);
+  transform: translateY(5px);
   float: right;
 }
 .modalCloseButton:hover, .modalCloseButton:active {
-  background-color: rgb(150, 11, 11);
+  background-color: rgb(209, 68, 68);
+  transform: translateY(5px);
 }

@@ -1,25 +1,28 @@
-import React, {useState} from 'react';
+import React from 'react';
+
 import './CardsContainer.css';
+
 import UserCard from '../UserCard/UserCard';
 
-const CardsContainer = ({users}) => {
+const CardsContainer = (props) => {
 
-  const [usersState, setUsersList] = useState({users: {users}});
-
-  const removeUser = (index) => {
-    
-    setUsersList(users.splice(index, 1));
-
-  };
+  const {users, removeUserHandler} = props;
 
   return (
+
     <div className = "CardsContainer">
-    {users.map( (element, index) => (
-      <UserCard {...element} key = {element.email? element.email : index} removeUser = {removeUser} currentIndex = {index}/>
-    ))}
+      {users.map( (element, index) => (
+        <UserCard 
+          cardDetails = {element} 
+          key = {`key- ${ Symbol(index).toString() }`} 
+          removeUser = {removeUserHandler} 
+          currentIndex = {index}
+        />
+
+      ))}
   </div>
-  )
   
+  )
 };
 
 export default CardsContainer;

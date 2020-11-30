@@ -1,47 +1,25 @@
-import React, { useState } from 'react';
+import React from 'react';
+
 import './UserCard.css';
+
 import Button from '../Button/Button';
+import UserInfo from '../UserInfo/UserInfo';
 
 
-
-const UserCard = ({name, username, email, address = "-", phone, website, company = "-", removeUser, currentIndex}) => {
-
-  const {street, suite, city, zipcode} = address;
-  const {name:companyName, catchPhrase, bs} = company;
+const UserCard = (props) => {
+  
+  const {removeUser, currentIndex, cardDetails} = props;
 
   return (
-    <div className = "UserCard">
-      <div className = "userInfo">
-        <h3>{name? name : "-"}</h3>
-        <p>user name: {username? username : "-"}</p>
-        <p>email: <i>{email? <a href = {`mailto: ${email} `} >{email}</a> : "-"}</i></p>
-        <p>phone: {phone? <a href = { ` tel: ${phone} `}>{phone}</a> : "-" }</p>
-        <p>website: {website? <a href = {website}>{website}</a> : "-"}</p>
-        <div className = "addressCompanyContainer">
-          {address !== "-" &&
-            <address className = "addressContainer"><b>Address: </b>
-              <p>{street}</p>
-              <p>{suite}</p>
-              <p>{city}</p>
-              <p>{zipcode}</p>
-            </address>
-          }
-          {company !== "-" &&
-          <div className = "companyContainer"><b>Company: </b>
-            <p className = "companyName"><b>{companyName}</b></p>
-            <p>{catchPhrase}</p>
-            <hr></hr>
-            <p>{bs}</p>
-          </div>
-          }
-        </div>
-      </div>
+
+    <div className = "UserCard" id = {cardDetails.id}>
+      <UserInfo user = {cardDetails} />
       <div className = "cardDeleteButtonContainer">
-        <Button className = "deleteUserButton" title = "Delete user" eventOnClick = {() => removeUser(currentIndex)} />
+        <Button className = "deleteUserButton" title = "Delete user" eventOnClick = {(e) => removeUser(e, null, currentIndex)} />
       </div>
     </div>
+
   )
-}
+};
 
 export default UserCard;
-

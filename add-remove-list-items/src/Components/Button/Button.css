@@ -22,9 +22,10 @@
   margin: auto 10px 5px auto;
 }
 .addUserButton:hover, .addUserButton:active {
-  background-color: rgb(9, 63, 9);
-  float: right;
+  background-color: rgb(80, 187, 80);
+  transform: translateY(5px);
 }
-.deleteUserButton:hover, .mdeleteUserButton:active {
-  background-color: rgb(150, 11, 11);
+.deleteUserButton:hover, .deleteUserButton:active {
+  background-color: rgb(209, 68, 68);
+  transform: translateY(5px);
 }

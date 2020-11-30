@@ -1,0 +1,13 @@
+.CardsMainPage {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(228, 225, 225, 0.8);
+  overflow: hidden;
+}
+.CardsMainPageHeader, .CardsMainPageBody {
+  position: relative;
+  width: 95%;
+  margin: 10px;
+  display: flex;
+}
