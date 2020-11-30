@@ -21,7 +21,7 @@ const CardsContainer = (props) => {
         />
 
       ))}
-  </div>
+    </div>
   
   )
 };

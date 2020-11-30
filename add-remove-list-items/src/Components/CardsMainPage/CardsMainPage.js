@@ -28,13 +28,13 @@ const CardsMainPage = (props) => {
         .then(responses => {
           setListOfUsers(responses[0]);
           setListOfPosts(responses[1]);
-        }
-        )
+        })
           .catch(error => console.log(error))
 
   }, []);
 
   const modalWindowHandler = (e) => {
+
     e.preventDefault();
     e.stopPropagation();
 
@@ -84,7 +84,7 @@ const CardsMainPage = (props) => {
         modalClass ={cardClass}
         closeModal = {e => modalWindowHandler(e)}
         addUser = {(e, newUser) => addRemoveUserHandler(e, newUser)}
-        />
+      />
       <div className = "CardsMainPageHeader">
         <Button className = "addUserButton" title = "Add user" eventOnClick = {e => modalWindowHandler(e)}/>
       </div>
@@ -92,7 +92,7 @@ const CardsMainPage = (props) => {
         <CardsContainer
           users = {listOfUsers}
           removeUserHandler = {addRemoveUserHandler}
-          />
+        />
       </div>
     </div>
     

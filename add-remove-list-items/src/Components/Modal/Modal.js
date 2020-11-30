@@ -16,11 +16,7 @@ const Modal = (props) => {
   
   const onNameChange = (e) => {
 
-    setUserState( {
-
-      ...newUser, [e.target.name]: e.target.value,
-
-    });
+    setUserState( { ...newUser, [e.target.name]: e.target.value });
 
   };
 
@@ -59,8 +55,11 @@ const Modal = (props) => {
           addUser(e, newUser);
           closeModal(e);
           clearNewUser(e);
-          }}/>
-        <Button className = "modalCloseButton" title = "Close" eventOnClick = {(e) => {closeModal(e); clearNewUser(e)}}/>
+        }}/>
+        <Button className = "modalCloseButton" title = "Close" eventOnClick = {(e) => {
+          closeModal(e);
+          clearNewUser(e)
+        }}/>
       </div>
     </div>
     
