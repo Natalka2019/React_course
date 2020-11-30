@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './UserInfo.css';
 
@@ -40,5 +41,11 @@ const UserInfo = (props) => {
     
   )
 };
+
+UserInfo.propTypes = {
+
+  user: PropTypes.object.isRequired,
+
+}
 
 export default UserInfo;

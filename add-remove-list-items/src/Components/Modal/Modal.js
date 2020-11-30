@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import PropTypes from 'prop-types';
 
 import './Modal.css';
 
@@ -66,6 +67,14 @@ const Modal = (props) => {
   )
       
 };
+
+Modal.propTypes = {
+
+  modalClass: PropTypes.string.isRequired,
+  closeModal: PropTypes.func.isRequired,
+  addUser: PropTypes.func.isRequired,
+
+}
 
 export default Modal;
 

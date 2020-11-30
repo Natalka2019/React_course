@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './CardsContainer.css';
 
@@ -24,5 +25,12 @@ const CardsContainer = (props) => {
   
   )
 };
+
+CardsContainer.propTypes = {
+
+  users: PropTypes.arrayOf(PropTypes.object).isRequired,
+  removeUserHandler: PropTypes.func.isRequired,
+
+}
 
 export default CardsContainer;

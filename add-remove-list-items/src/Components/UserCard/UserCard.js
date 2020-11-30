@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './UserCard.css';
 
@@ -21,5 +22,13 @@ const UserCard = (props) => {
 
   )
 };
+
+UserCard.propTypes = {
+
+  removeUser: PropTypes.func.isRequired,
+  currentIndex: PropTypes.number.isRequired,
+  cardDetails: PropTypes.object.isRequired 
+
+}
 
 export default UserCard;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './UserPage.css';
 
@@ -28,5 +29,12 @@ const UserPage = (props) => {
     
   )
 };
+
+UserPage.propTypes = {
+
+  postsToBeRendered: PropTypes.arrayOf(PropTypes.object).isRequired,
+  user: PropTypes.object.isRequired,
+
+}
 
 export default UserPage;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './Post.css';
 
@@ -16,6 +17,15 @@ const Post = (props) => {
     </div>
     
   )
+}
+
+Post.propTypes = {
+
+  userId: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  body: PropTypes.string.isRequired,
+
 }
 
 export default Post;

@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Redirect} from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import './CardsMainPage.css';
 
@@ -97,5 +98,11 @@ const CardsMainPage = (props) => {
     
   );
 };
+
+CardsMainPage.propTypes = {
+
+  findSelectedUser: PropTypes.func.isRequired,
+
+}
 
 export default CardsMainPage;
