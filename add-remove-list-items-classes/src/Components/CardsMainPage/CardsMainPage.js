@@ -24,22 +24,22 @@ class CardsMainPage extends React.Component {
     };
 
     this.modalWindowHandler = this.modalWindowHandler.bind(this);
-    this.addUser = this.addUser.bind(this);
+    this.addRemoveUserHandler = this.addRemoveUserHandler.bind(this);
     this.extractUserPosts = this.extractUserPosts.bind(this);
-    this.removeUserHandler = this.removeUserHandler.bind(this);
 
   }
 
   componentDidMount() {
 
-    fetch(this.state.URLUsers)
-      .then(data => data.json())
-        .then(data => this.setState({listOfUsers: data}))
+    Promise.all([fetch(this.state.URLUsers), fetch(this.state.URLPosts)])
+      .then(responses => Promise.all(responses.map(response => response.json())))
+        .then(responses => this.setState ({
 
-    fetch(this.state.URLPosts)
-      .then(data => data.json())
-        .then(data => this.setState({listOfPosts: data}))
+          listOfUsers: responses[0],
+          listOfPosts: responses[1]
 
+        }))
+          .catch(error => console.log(error))
 
   }
 
@@ -50,30 +50,18 @@ class CardsMainPage extends React.Component {
     this.setState({isShown: !this.state.isShown})
   }
 
-  
+  addRemoveUserHandler (e, newUser, index) {
 
-  addUser (e, newUser) {
-    e.preventDefault();
-    e.stopPropagation();
-
-    const usersArray = [...this.state.listOfUsers];
-
-    usersArray.push(newUser);
-    this.setState({listOfUsers: usersArray});
-
-  }
-
-  removeUserHandler (index, e) {
     e.preventDefault();
     e.stopPropagation();
 
     const users = [...this.state.listOfUsers];
 
-    users.splice(index, 1);
-    
+    newUser? users.push(newUser) : users.splice(index, 1);
+
     this.setState({listOfUsers: users});
 
-  };
+  }
 
   extractUserPosts(e) {
 
@@ -93,6 +81,8 @@ class CardsMainPage extends React.Component {
 
   render() {
 
+    console.log(this.state.listOfUsers);
+
     const cardClass = this.state.isShown? 'modalOverlay showModal' : 'modalOverlay';
 
     const {selectedId: id}= this.state;
@@ -107,7 +97,7 @@ class CardsMainPage extends React.Component {
         <Modal
           modalClass ={cardClass}
           closeModal = {e => this.modalWindowHandler(e)}
-          addUser = {(e, newUser) => this.addUser(e, newUser)}
+          addUser = {(e, newUser) => this. addRemoveUserHandler(e, newUser)}
           />
         <div className = "CardsMainPageHeader">
           <Button className = "addUserButton" title = "Add user" eventOnClick = {e => this.modalWindowHandler(e)}/>
@@ -115,7 +105,7 @@ class CardsMainPage extends React.Component {
         <div className = "CardsMainPageBody" onClick = {e => this.extractUserPosts(e)}>
           <CardsContainer
             users = {this.state.listOfUsers}
-            removeUserHandler = {this.removeUserHandler}
+            removeUserHandler = {this. addRemoveUserHandler}
             />
         </div>
         

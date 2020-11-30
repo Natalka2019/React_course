@@ -10,14 +10,14 @@ class UserCard extends React.Component {
   
   render (){
 
-    const {removeUser, currentIndex} = this.props;
+    const {removeUser, currentIndex, cardDetails} = this.props;
 
     return (
 
-      <div className = "UserCard" id = {this.props.cardDetails.id}>
-        <UserInfo user = {this.props.cardDetails} />
+      <div className = "UserCard" id = {cardDetails.id}>
+        <UserInfo user = {cardDetails} />
         <div className = "cardDeleteButtonContainer">
-          <Button className = "deleteUserButton" title = "Delete user" eventOnClick = {(e) => removeUser(currentIndex, e)} />
+          <Button className = "deleteUserButton" title = "Delete user" eventOnClick = {(e) => removeUser(e, null, currentIndex)} />
         </div>
       </div>
 
