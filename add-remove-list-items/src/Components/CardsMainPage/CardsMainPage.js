@@ -11,8 +11,8 @@ import Modal from '../Modal/Modal';
 
 const CardsMainPage = (props) => {
 
-  const [URLUsers] = useState("https://jsonplaceholder.typicode.com/users");
-  const [URLPosts] = useState("https://jsonplaceholder.typicode.com/posts");
+  const URLUsers = "https://jsonplaceholder.typicode.com/users";
+  const URLPosts = "https://jsonplaceholder.typicode.com/posts";
 
   const [listOfUsers, setListOfUsers] = useState([]);
   const [listOfPosts, setListOfPosts] = useState([]);
