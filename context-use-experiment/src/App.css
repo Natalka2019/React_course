@@ -1,0 +1,35 @@
+.App {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(117, 119, 117);
+  overflow: hidden;
+}
+.AppHeader, .AppBody {
+  position: relative;
+  width: 95%;
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.App ul {
+  list-style-type: none;
+  color: rgb(255,255,255);
+  font-size: 26px;
+  margin: 0;
+  padding: 5px;
+}
+.App ul li a {
+  color:rgb(255,255,255);
+  border: 2px solid rgb(255,255,255);;
+  padding: 5px;
+}
+.App ul li a:hover, a:active {
+  color: rgb(22, 22, 22);
+  background-color:  rgb(255,255,255); 
+}
+
+
+
+
