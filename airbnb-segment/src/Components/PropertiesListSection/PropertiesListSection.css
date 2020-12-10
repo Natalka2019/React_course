@@ -1,0 +1,25 @@
+.PropertiesListSection {
+  padding: 10px;
+}
+.PropertiesListSection .listHeader {
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  color: rgb(34, 34, 34);
+  display: block;
+  font-family: Circular, -apple-system, system-ui, Roboto, "Helvetica Neue", sans-serif;
+}
+.PropertiesListSection .listHeader p{
+  font-size: 14px;
+  line-height: 18px;
+  padding-bottom: 8px;
+}
+.PropertiesListSection .listHeader h3{
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 30px;
+}
+.PropertiesListSection .listHeader .list{
+  position: relative;
+  margin-top: 10px;
+}
+

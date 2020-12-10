@@ -1,0 +1,114 @@
+.PropertyCard {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  font-size: 14px;
+  color: rgb(113, 113, 113)
+}
+.PropertyCardDetails {
+  display: flex;
+  flex-direction: row;
+}
+.propertyPhoto img{
+  overflow: hidden;
+  border-radius: 5px;
+}
+.propertyDescription {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+}
+.PropertyCardInfo {
+  padding-left: 10px;
+}
+.PropertyCardInfo p{
+  line-height: 18px;
+  margin: 0;
+}
+.PropertyCardInfo .propertyName{
+  font-size: 18px;
+  line-height: 24px; 
+  color: rgb(34, 34, 34);
+}
+.PropertyCardInfo hr {
+  width: 5%;
+  margin-left: 0;
+}
+.PropertyCardRatingPrice {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  color: rgb(34, 34, 34);
+}
+.PropertyCardRatingPrice p{
+  margin: 0;
+  padding-left: 10px;
+
+}
+.PropertyCardRatingPrice .rating{
+  position: absolute;
+  bottom: 0;
+}
+.PropertyCardRatingPrice .price{
+  margin-right: 5px;
+  margin-left: auto;
+  font-size: 18px;
+  line-height: 24px 
+}
+.cardLine {
+  margin-top: 20px;
+  height: 1px;
+  width: 100%
+}
+
+@media (max-width: 1100px) {
+
+  .PropertyCardRatingPrice {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .PropertyCardRatingPrice p{
+    margin-top: 5px;
+  }
+  .PropertyCardRatingPrice .rating{
+    position: relative;
+  }
+  .PropertyCardRatingPrice .price{
+    margin: 0;
+  }
+
+}
+
+@media (max-width: 800px) {
+
+  .PropertyCardDetails {
+    display: flex;
+    flex-direction: column;
+  }
+  .PropertyCardInfo {
+    padding-left: 0;
+    margin-top: 10px;
+  }
+  .PropertyCardRatingPrice {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .PropertyCardRatingPrice p{
+    padding-left: 0;
+    margin-top: 5px;
+  }
+  .PropertyCardRatingPrice .rating{
+    position: relative;
+  }
+  .PropertyCardRatingPrice .price{
+    margin: 0;
+  }
+
+}
+
