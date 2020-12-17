@@ -9,6 +9,27 @@ const PropertyCard = (props) => {
   const {badgeText, rating} = guestReviews;
   const {features, price} = ratePlan;
 
+  const splitWords = (string) => {
+
+    let splitString = '';
+
+    for (let char of string) {
+
+      if (char !== char.toUpperCase()) {
+        
+        splitString += char; 
+
+      } else {
+        
+        splitString += ` ${char.toLowerCase()}`; 
+
+       }
+    }
+
+    return splitString;
+    
+  };
+
   return (
     <div className = 'PropertyCard'>
       <div className = 'PropertyCardDetails'>
@@ -20,11 +41,11 @@ const PropertyCard = (props) => {
             <p>{`${countryName}, ${locality}, ${region}, ${streetAddress}`}</p>
             <p className = 'propertyName'>{name}</p>
             <hr></hr>
-            <p>{Object.keys(features).join(' - ')}</p>
+            <p>{Object.keys(features).map(feature => splitWords(feature) ).join(' - ')}</p>
           </div>
           <div className = 'PropertyCardRatingPrice'>
             <p className = 'rating'>{`${badgeText}, ${rating}`}</p>
-            <p className = 'price'><b>{price.current}</b>/ {price.info}</p>
+            <p className = 'price'><b>{price.current}</b> {price.info}</p>
           </div>
         </div>
       </div>
