@@ -1,0 +1,10 @@
+.SearchButton {
+  background-color: rgb(235, 72, 72);
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  color: white;
+  font-size: 16px;
+  padding: 5px 10px 5px 10px;
+  margin: 0;
+}

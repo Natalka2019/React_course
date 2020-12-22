@@ -1,0 +1,21 @@
+.PlainText {
+  margin: 0;
+  padding-left: 10px;
+}
+
+@media (max-width: 1100px) {
+
+  .PlainText{
+    margin-top: 5px;
+  }
+
+}
+
+@media (max-width: 800px) {
+
+  .PlainText{
+    padding-left: 0;
+    margin-top: 5px;
+  }
+
+}

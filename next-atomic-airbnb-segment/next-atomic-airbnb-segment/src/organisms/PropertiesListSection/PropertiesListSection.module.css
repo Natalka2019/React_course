@@ -1,0 +1,37 @@
+.PropertiesListSection {
+  padding: 10px;
+}
+.listHeader {
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  color: rgb(34, 34, 34);
+  display: block;
+  font-family: Circular, -apple-system, system-ui, Roboto, "Helvetica Neue", sans-serif;
+}
+.listHeaderUpper {
+  display: flex;
+  flex-direction: start;
+  align-items: center;
+}
+.listHeader p{
+  font-size: 14px;
+  line-height: 18px;
+  padding-bottom: 8px;
+}
+.listHeader h3{
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 30px;
+}
+.listHeader .list{
+  position: relative;
+  margin-top: 10px;
+}
+.returnArrow {
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 18px;
+  padding-bottom: 8px;
+  padding-right: 8px;
+}
+
