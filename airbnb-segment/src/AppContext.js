@@ -13,8 +13,8 @@ const SearchResultsProvider = (props) => {
     fetch(`https://hotels4.p.rapidapi.com/properties/list?${new URLSearchParams({
       "destinationId": "1506246",
       "pageNumber": "1",
-      "checkIn": "2020-12-10",
-      "checkOut": "2020-12-25",
+      "checkIn": "2020-01-08",
+      "checkOut": "2020-01-15",
       "pageSize": "25",
       "adults1": "1",
       "currency": "USD",
@@ -23,7 +23,7 @@ const SearchResultsProvider = (props) => {
     })}`, {
       method: 'GET',
       headers: {
-        "x-rapidapi-key": "ef6aa709c6msh59ea8aef79713cbp1df7c5jsn167c2866f9b9",
+        "x-rapidapi-key": "2cfaa32eb3msh350d9bcfdaba73bp17210cjsn5488defdc617",
         "x-rapidapi-host": "hotels4.p.rapidapi.com",
         "useQueryString": true
       }
