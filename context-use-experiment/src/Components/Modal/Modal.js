@@ -13,8 +13,8 @@ const Modal = () => {
 
   return (
     
-    <div className = {cardClass}>
-      <div className = "modalContent">
+    <div className = {cardClass} onClick = { e => modalWindowHandler(e)}>
+      <div className = "modalContent" onClick = { e => e.stopPropagation()}>
         <div className = "modalInputs">
           <label htmlFor = "inputName">name: </label>
           <input type = 'text' id = "inputName" name = "name" value = {newUser.name} onChange= {onNameChange} placeholder = "Enter name"></input>
