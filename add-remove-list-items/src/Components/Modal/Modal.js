@@ -39,8 +39,13 @@ const Modal = (props) => {
 
   return (
     
-    <div className = {modalClass}>
-      <div className = "modalContent">
+    <div className = {modalClass}  onClick = {(e) => { 
+      closeModal(e);
+      clearNewUser(e);
+    }}>
+      <div className = "modalContent" onClick = {(e) => { 
+      e.stopPropagation();
+    }}>
         <div className = "modalInputs">
           <label htmlFor = "inputName">name: </label>
           <input type = 'text' id = "inputName" name = "name" value = {newUser.name} onChange= {onNameChange} placeholder = "Enter name"></input>
