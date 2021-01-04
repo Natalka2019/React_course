@@ -2,25 +2,20 @@ import React from 'react';
 
 import styles from './SearchFields.module.css';
 
-import SearchButton from '../../atoms/SearchButton/SearchButton';
-import SearchField from '../../atoms/SearchField/SearchField';
+import {SearchButton,SearchField} from '../../atoms';
 
-const SearchFields = ({destination, checkInShort, checkOutShort, adult}) => {
-  
-  return (
+const SearchFields = ({destination, checkInShort, checkOutShort, adult}) => (
 
     <div className = {styles.SearchFields}>
       <SearchField>{destination}</SearchField>
-      <hr></hr>
+      <div className = {styles.horizontalLine}/>
       <SearchField>{` ${checkInShort} - ${checkOutShort} `}</SearchField>
-      <hr></hr>
+      <div className = {styles.horizontalLine}/>
       <SearchField>{` ${adult} guest`}</SearchField>
-      <hr></hr>
+      <div className = {styles.horizontalLine}/>
       <SearchButton>Search</SearchButton>
     </div>
     
-  )
-
-};
+  );
 
 export default SearchFields;

@@ -1,0 +1,28 @@
+.LocationSearchField {
+  box-sizing: border-box;
+  display: block;
+  position: relative;
+  border-radius: 35px;
+  padding: 0 30px;
+  margin: 0;
+}
+.LocationSearchField:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.18);
+  transition: background-color 0.2s ease;
+}
+.label {
+  box-sizing: border-box;
+  position: relative;
+  color: rgb(34, 34, 34);
+  cursor: pointer;
+  display: block;
+  margin: 0;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.48px;
+  padding: 10px;
+  pointer-events: auto;
+  text-align: left;
+}
+

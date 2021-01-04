@@ -1,14 +1,20 @@
-import React, {useContext} from 'react';
+import React, {useContext, useMemo} from 'react';
 import Link from 'next/link';
 
 import styles from './PropertiesListSection.module.css'
 
 import {SearchResultsContext} from '../../../AppContext';
-import PropertyCard from '../../molecules/PropertyCard/PropertyCard';
+import {PropertyCard} from '../../molecules';
 
 const PropertiesListSection = () => {
 
   const {destination, propertiesList, checkInShort, checkOutShort, adult} = useContext(SearchResultsContext);
+
+  const memoizedPropertyCards = useMemo( () => propertiesList.map( (property) => (
+    <PropertyCard
+    {...property}
+    key = {property.id} />
+  )), [propertiesList]);
 
   return (
     <div className = {styles.PropertiesListSection}>
@@ -22,14 +28,10 @@ const PropertiesListSection = () => {
         <h3>Stays in {destination}</h3>
       </div>
       <div className = {styles.list}>
-        {propertiesList.map( (property, index) => (
-            <PropertyCard
-            {...property}
-            key = {property.id} />
-          ))}
+        {memoizedPropertyCards}
         </div> 
     </div>
   )
 };
 
-export default React.memo(PropertiesListSection);
+export default PropertiesListSection;

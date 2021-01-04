@@ -1,11 +1,11 @@
-import React, {useContext} from 'react';
+import React, {useContext, useMemo} from 'react';
 import {withScriptjs, withGoogleMap, GoogleMap, Marker} from 'react-google-maps';
 import {MarkerClusterer} from 'react-google-maps/lib/components/addons/MarkerClusterer';
 
 import {SearchResultsContext} from '../../../AppContext';
 
 
-const Map = withScriptjs(withGoogleMap((props) => {
+const Map = withScriptjs(withGoogleMap(() => {
 
   const {propertiesList} = useContext(SearchResultsContext);
 
@@ -30,4 +30,4 @@ const Map = withScriptjs(withGoogleMap((props) => {
   )
 }));
 
-export default React.memo(Map);
+export default Map;

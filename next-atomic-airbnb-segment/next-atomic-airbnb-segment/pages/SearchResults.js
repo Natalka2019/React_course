@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SearchResultsPage from '../src/templates/SearchResultsPage/SearchResultsPage';
+import {SearchResultsTemplate} from '../src/templates';
 import {SearchResultsProvider} from '../AppContext';
 
 const SearchResults = () => {
@@ -8,7 +8,7 @@ const SearchResults = () => {
   return (
 
     <SearchResultsProvider>
-      <SearchResultsPage />
+      <SearchResultsTemplate/>
     </SearchResultsProvider>
   )
 

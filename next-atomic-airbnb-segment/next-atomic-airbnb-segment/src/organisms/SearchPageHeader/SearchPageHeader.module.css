@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 50px 20px 20px 20px;
+}
+.leftContainer,
+.rightContainer {
+  width: 20%;
+  display: flex;
+  margin-bottom: 20px;
+}
+.leftContainer {
+  display: flex;
+  justify-content: flex-start;
+}
+.centerContainer{
+  width: 60%;
+  display: flex;
+  justify-content: center;
+}
+.rightContainer {
+  display: flex;
+  justify-content: flex-end;
+}
+@media (max-width: 800px) {
+  .centerContainer{
+    width: 100%;
+    order: 3;
+  }
+  .leftContainer,
+  .rightContainer {
+    width: 50%;
+  }
+}

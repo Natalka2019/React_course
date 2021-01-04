@@ -16,10 +16,12 @@
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
   transition: box-shadow 0.2s ease;
 }
-.SearchFields hr {
+.SearchFields .horizontalLine {
   transform: rotate(90deg);
   width: 25px;
-  color: #DDDDDD;
+  background-color: #DDDDDD;
+  height: 2px;
+  border: none;
 }
 
 @media (max-width: 530px) {

@@ -1,12 +1,10 @@
-import React, {useContext} from 'react';
+import React from 'react';
 
-import styles from './SearchResultsPage.module.css';
+import styles from './SearchResultsTemplate.module.css';
 
-import SearchResultsPageHeader from '../../organisms/SearchResultsPageHeader/SearchResultsPageHeader';
-import PropertiesListSection from '../../organisms/PropertiesListSection/PropertiesListSection';
-import Map from '../../organisms/Map/Map';
+import {SearchResultsPageHeader, PropertiesListSection, Map} from '../../organisms';
 
-const SearchResultsPage = () => {
+const SearchResultsTemplate = () => {
   
   return (
 
@@ -31,4 +29,4 @@ const SearchResultsPage = () => {
 
 };
 
-export default React.memo(SearchResultsPage);
+export default SearchResultsTemplate;

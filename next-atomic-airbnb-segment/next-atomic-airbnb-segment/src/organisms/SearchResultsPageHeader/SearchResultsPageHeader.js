@@ -1,14 +1,17 @@
-import React, {useContext} from 'react';
+import React, {useContext, useMemo} from 'react';
 import Link from 'next/link';
 
 import styles from './SearchResultsPageHeader.module.css';
 
 import {SearchResultsContext} from '../../../AppContext';
-import SearchFields from '../../molecules/SearchFields/SearchFields';
+import {SearchFields} from '../../molecules';
 
 const SearchResultsPageHeader = () => {
 
   const {destination, showLoading, checkInShort, checkOutShort, adult} = useContext(SearchResultsContext);
+
+  const memoizedSearchFields = useMemo( () => <SearchFields destination = {destination} checkInShort = {checkInShort} checkOutShort = {checkOutShort} adult = {adult}/>,
+  [destination, checkInShort, checkOutShort, adult]);
   
   return (
 
@@ -27,7 +30,7 @@ const SearchResultsPageHeader = () => {
           </Link>
         </div>
         <div className = {styles.searchFieldsContainer}>
-          <SearchFields destination = {destination} checkInShort = {checkInShort} checkOutShort = {checkOutShort} adult = {adult}/>
+          {memoizedSearchFields}
         </div>
       </div>
       }
@@ -37,4 +40,4 @@ const SearchResultsPageHeader = () => {
 
 };
 
-export default React.memo(SearchResultsPageHeader);
+export default SearchResultsPageHeader;

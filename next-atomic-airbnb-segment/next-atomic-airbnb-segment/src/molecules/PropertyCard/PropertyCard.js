@@ -2,9 +2,7 @@ import React from 'react';
 
 import styles from './PropertyCard.module.css';
 
-import Photo from '../../atoms/Photo/Photo';
-import TitleText from '../../atoms/TitleText/TitleText';
-import PlainText from '../../atoms/PlainText/PlainText';
+import {Photo, TitleText, PlainText} from '../../atoms';
 
 const PropertyCard = (props) => {
 
@@ -42,7 +40,7 @@ const PropertyCard = (props) => {
           <div className = {styles.PropertyCardInfo}>
             <PlainText>{`${countryName}, ${locality}, ${region}, ${streetAddress}`}</PlainText>
             <TitleText>{name}</TitleText>
-            <hr></hr>
+            <div className = {styles.horizontalLine}/>
             <PlainText>{Object.keys(features).map(feature => splitWords(feature) ).join(' - ')}</PlainText>
           </div>
           <div className = {styles.PropertyCardRatingPrice}>
@@ -53,7 +51,7 @@ const PropertyCard = (props) => {
           </div>
         </div>
       </div>
-      <hr className = {styles.cardLine}></hr>
+      <div className = {styles.horizontalLine}/>
     </div>
   )
 };
