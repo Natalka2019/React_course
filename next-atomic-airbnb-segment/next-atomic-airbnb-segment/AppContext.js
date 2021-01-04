@@ -27,9 +27,9 @@ const SearchResultsProvider = (props) => {
 
   };
 
-  const destinationIdRequest = async (destination) => {
+  const destinationIdRequest = (destination) => {
 
-    await fetch(`https://hotels4.p.rapidapi.com/locations/search?${new URLSearchParams({
+    fetch(`https://hotels4.p.rapidapi.com/locations/search?${new URLSearchParams({
       "query": destination,
       "locale": "en_US"
     })}`, {
@@ -48,12 +48,25 @@ const SearchResultsProvider = (props) => {
       })
       .catch((error) => console.log(error));
 
-  }
+  };
 
-  const getListOfProperties = async () => {
+    
+  const searchHandler = (e) => {
 
-    await fetch(`https://hotels4.p.rapidapi.com/properties/list?${new URLSearchParams({
-      "destinationId": "1506246",
+    e.preventDefault();
+
+    console.log(searchRequest);
+
+    destinationIdRequest(searchRequest.destination);
+
+  }; 
+
+  useEffect( () => {
+
+    let mounted = true;
+
+    fetch(`https://hotels4.p.rapidapi.com/properties/list?${new URLSearchParams({
+      "destinationId": destinationId,
       "pageNumber": "1",
       "checkIn": searchRequest.checkIn,
       "checkOut": searchRequest.checkOut,
@@ -73,42 +86,30 @@ const SearchResultsProvider = (props) => {
       .then(data => data.json())
       .then(json => {
 
-        console.log(destinationId);
-        console.log(showLoading);
-        console.log(destination);
-        console.log(searchRequest);
-        console.log(propertiesList);
+        if (mounted) {
+          console.log(json);
+          setDestination(json.data.body.header.split(',')[0]);
+          setPropertiesList(json.data.body.searchResults.results);
+          setShowLoading(false);
+  
+          console.log(destinationId);
+          console.log(showLoading);
+          console.log(destination);
+          console.log(searchRequest);
+          console.log(propertiesList);
+        }
 
-        console.log(json);
-        setDestination(json.data.body.header.split(',')[0]);
-        setPropertiesList(json.data.body.searchResults.results);
-        setShowLoading(false);
-
-        console.log(destinationId);
-        console.log(showLoading);
-        console.log(destination);
-        console.log(searchRequest);
-        console.log(propertiesList);
 
       })
       .catch((error) => console.log(error))
-  }
-  
-   const searchHandler = async (e) => {
 
-    e.preventDefault();
-
-    console.log(searchRequest);
-
-    await destinationIdRequest(searchRequest.destination);
-
-    // await getListOfProperties();
-
-  }; 
-
-  useEffect( () => {
-    getListOfProperties();
+      return () => mounted = false;
   }, [destinationId]);
+
+
+  // useEffect( () => {
+  //   getListOfProperties();
+  // }, [destinationId]);
  
   const checkInDate = new Date("2020-01-08");
   const checkOutDate = new Date("2020-01-15");
@@ -159,6 +160,12 @@ const SearchResultsProvider = (props) => {
     }
     
   };
+
+  console.log(destinationId);
+  console.log(showLoading);
+  console.log(destination);
+  console.log(searchRequest);
+  console.log(propertiesList);
 
   return (
     <SearchResultsContext.Provider value = { {

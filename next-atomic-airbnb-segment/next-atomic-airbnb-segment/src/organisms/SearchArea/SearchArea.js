@@ -22,7 +22,7 @@ const SearchArea = () => {
       <div className = {styles.horizontalLine}/>
       <GuestsNumberField/>
       <SearchButton onClickHandler = {searchHandler} >
-        <Link to href = '/SearchResults'>Search</Link>
+        {/* <Link to href = '/SearchResults'>Search</Link> */}
       </SearchButton>
     </div>
     
