@@ -3,7 +3,7 @@ import React, {useContext} from 'react';
 import styles from './SearchPageHeader.module.css';
 
 import {SearchResultsContext} from '../../../AppContext';
-import {Logo, Link, Language} from '../../atoms';
+import {Logo, Redirect, Language} from '../../atoms';
 import {SearchPageHeaderCenter} from '../../molecules';
 
 const SearchPageHeader = () => {
@@ -19,7 +19,7 @@ const SearchPageHeader = () => {
         <SearchPageHeaderCenter/>
       </div>
       <div className = {styles.rightContainer}>
-        <Link>Become a host</Link>
+        <Redirect>Become a host</Redirect>
         <Language onClickHandler = {modalHandler} >En</Language>
       </div> 
     </div>

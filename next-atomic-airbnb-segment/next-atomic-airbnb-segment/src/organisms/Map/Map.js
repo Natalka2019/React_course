@@ -8,12 +8,16 @@ import {SearchResultsContext} from '../../../AppContext';
 const Map = withScriptjs(withGoogleMap(() => {
 
   const {propertiesList} = useContext(SearchResultsContext);
+  const defaultCenter = {
+    lat: propertiesList[0].coordinate.lat,
+    lng: propertiesList[0].coordinate.lon
+  }
 
   return (
     <div className = 'Map'>
     <GoogleMap 
       default zoom = {10}
-      defaultCenter = {{lat: 40.704175, lng: -73.937509}}
+      defaultCenter = {defaultCenter}
     >
       <MarkerClusterer>
         {propertiesList.map(

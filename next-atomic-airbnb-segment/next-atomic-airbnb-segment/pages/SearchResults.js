@@ -1,17 +1,8 @@
 import React from 'react';
 
 import {SearchResultsTemplate} from '../src/templates';
-import {SearchResultsProvider} from '../AppContext';
 
-const SearchResults = () => {
 
-  return (
-
-    <SearchResultsProvider>
-      <SearchResultsTemplate/>
-    </SearchResultsProvider>
-  )
-
-};
+const SearchResults = () => <SearchResultsTemplate/>;
 
 export default SearchResults;

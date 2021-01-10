@@ -3,7 +3,7 @@ export {default as PlainText} from './PlainText/PlainText';
 export {default as SearchButton} from './SearchButton/SearchButton';
 export {default as SearchField} from './SearchField/SearchField';
 export {default as TitleText} from './TitleText/TitleText';
-export {default as Link} from './Link/Link';
+export {default as Redirect} from './Redirect/Redirect';
 export {default as Logo} from './Logo/Logo';
 export {default as Language} from './Language/Language';
 export {default as CloseButton} from './CloseButton/CloseButton';

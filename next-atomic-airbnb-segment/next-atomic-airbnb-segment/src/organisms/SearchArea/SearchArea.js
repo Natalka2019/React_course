@@ -1,5 +1,4 @@
 import React, {useContext} from 'react';
-import Link from 'next/link';
 
 import styles from './SearchArea.module.css';
 
@@ -21,9 +20,7 @@ const SearchArea = () => {
       <DateSearchField label = 'Check Out' name = 'checkOut'/>
       <div className = {styles.horizontalLine}/>
       <GuestsNumberField/>
-      <SearchButton onClickHandler = {searchHandler} >
-        {/* <Link to href = '/SearchResults'>Search</Link> */}
-      </SearchButton>
+      <SearchButton onClickHandler = {searchHandler}>Search</SearchButton>
     </div>
     
   )

@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import {useRouter} from 'next/router';
 
 const SearchResultsContext = React.createContext();
 
@@ -17,7 +18,12 @@ const SearchResultsProvider = (props) => {
   const [destinationId, setDestinationId] = useState('');  
   const [propertiesList, setPropertiesList] = useState([]);
   const [showLoading, setShowLoading] = useState(true);
-  const [showModal, setShowModal] = useState(false);   
+  const [showModal, setShowModal] = useState(false);  
+  const [idFetched, setIdFetched] = useState(false);
+  
+  const router = useRouter();
+  const href = '/SearchResults';
+
 
   const inputValueHandler = (e) => {
 
@@ -42,9 +48,8 @@ const SearchResultsProvider = (props) => {
     })
       .then(data => data.json())
       .then(json => {
-        console.log(json.suggestions[0].entities[0].destinationId);
         setDestinationId(json.suggestions[0].entities[0].destinationId);
-        console.log(destinationId);     
+        setIdFetched(true);
       })
       .catch((error) => console.log(error));
 
@@ -55,15 +60,22 @@ const SearchResultsProvider = (props) => {
 
     e.preventDefault();
 
-    console.log(searchRequest);
-
     destinationIdRequest(searchRequest.destination);
 
   }; 
 
   useEffect( () => {
 
-    let mounted = true;
+    if (idFetched) {
+      fetchPropertiesList()
+    }
+
+  }, [idFetched]);
+
+
+  const fetchPropertiesList = () => {
+
+    console.log(5);
 
     fetch(`https://hotels4.p.rapidapi.com/properties/list?${new URLSearchParams({
       "destinationId": destinationId,
@@ -86,30 +98,16 @@ const SearchResultsProvider = (props) => {
       .then(data => data.json())
       .then(json => {
 
-        if (mounted) {
-          console.log(json);
           setDestination(json.data.body.header.split(',')[0]);
           setPropertiesList(json.data.body.searchResults.results);
           setShowLoading(false);
-  
-          console.log(destinationId);
-          console.log(showLoading);
-          console.log(destination);
-          console.log(searchRequest);
-          console.log(propertiesList);
-        }
 
+          router.push(href);
 
       })
       .catch((error) => console.log(error))
 
-      return () => mounted = false;
-  }, [destinationId]);
-
-
-  // useEffect( () => {
-  //   getListOfProperties();
-  // }, [destinationId]);
+  }
  
   const checkInDate = new Date("2020-01-08");
   const checkOutDate = new Date("2020-01-15");
@@ -118,36 +116,6 @@ const SearchResultsProvider = (props) => {
   const checkOutShort = checkOutDate.toLocaleString('default', {month: 'short', day: 'numeric'})
 
   const adult = searchRequest.adult;
-
-  // useEffect( () => {
-
-  //   fetch(`https://hotels4.p.rapidapi.com/properties/list?${new URLSearchParams({
-  //     "destinationId": "1506246",
-  //     "pageNumber": "1",
-  //     "checkIn": checkIn,
-  //     "checkOut": checkOut,
-  //     "pageSize": "25",
-  //     "adults1": adult,
-  //     "currency": "USD",
-  //     "locale": "en_US",
-  //     "sortOrder": "PRICE"
-  //   })}`, {
-  //     method: 'GET',
-  //     headers: {
-  //       "x-rapidapi-key": "2cfaa32eb3msh350d9bcfdaba73bp17210cjsn5488defdc617",
-  //       "x-rapidapi-host": "hotels4.p.rapidapi.com",
-  //       "useQueryString": true
-  //     }
-  //   })
-
-  //     .then(data => data.json())
-  //     .then(json => {
-  //       setDestination(json.data.body.header.split(',')[0]);
-  //       setPropertiesList(json.data.body.searchResults.results);
-  //       setShowLoading(false);
-  //     })
-  //     .catch((error) => console.log(error))
-  // }, []);
 
   const modalHandler = (e) => {
 
@@ -160,6 +128,8 @@ const SearchResultsProvider = (props) => {
     }
     
   };
+
+  console.log(idFetched);
 
   console.log(destinationId);
   console.log(showLoading);
@@ -178,7 +148,7 @@ const SearchResultsProvider = (props) => {
       modalHandler,
       showModal,
       searchHandler,
-      inputValueHandler
+      inputValueHandler,
     }}>
       {props.children}
     </SearchResultsContext.Provider> 

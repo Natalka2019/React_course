@@ -2,16 +2,16 @@ import React from 'react';
 
 import styles from './SearchPageHeaderCenter.module.css';
 
-import {Link} from '../../atoms'
+import {Redirect} from '../../atoms'
 
 const SearchPageHeaderCenter = () => {
 
   return (
 
       <div className = {styles.content}>
-        <Link class = 'active'>Places to stay</Link>
-        <Link>Experiences</Link>
-        <Link>Online experiences</Link>
+        <Redirect class = 'active'>Places to stay</Redirect>
+        <Redirect>Experiences</Redirect>
+        <Redirect>Online experiences</Redirect>
       </div>
 
   )
