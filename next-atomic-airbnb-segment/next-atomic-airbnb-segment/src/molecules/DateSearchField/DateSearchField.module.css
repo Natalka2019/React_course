@@ -8,8 +8,10 @@
 }
 .DateSearchField:hover {
   cursor: pointer;
-  background-color: rgba(0, 0, 0, 0.18);
+  background-color: #DDDDDD;
   transition: background-color 0.2s ease;
+  margin: 0 -20px;
+  padding: 0 30px;
 }
 .label {
   box-sizing: border-box;
@@ -27,3 +29,17 @@
   text-align: left;
 }
 
+@media (max-width: 1000px) {
+  .DateSearchField {
+    padding: 0;
+  }
+}
+@media (max-width: 770px) {
+  .DateSearchField {
+    padding: 0 50px;
+  }
+  .DateSearchField:hover {
+    margin: -5px -20px;
+    padding: 5px 30px;
+  }
+}

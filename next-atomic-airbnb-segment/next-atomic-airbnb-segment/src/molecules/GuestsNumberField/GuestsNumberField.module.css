@@ -8,8 +8,10 @@
 }
 .GuestsNumberField:hover {
   cursor: pointer;
-  background-color: rgba(0, 0, 0, 0.18);
+  background-color: #DDDDDD;
   transition: background-color 0.2s ease;
+  margin: -3px -8px -3px -15px;
+  padding: 3px 38px 3px 45px;
 }
 .label {
   box-sizing: border-box;
@@ -24,5 +26,20 @@
   padding: 10px;
   pointer-events: auto;
   text-align: left;
+}
+
+@media (max-width: 1000px) {
+  .GuestsNumberField {
+    padding: 0;
+  }
+}
+@media (max-width: 770px) {
+  .GuestsNumberField {
+    padding: 0 40px;
+  }
+  .GuestsNumberField:hover {
+    margin: -5px -20px;
+    padding: 5px 40px;
+  }
 }
 

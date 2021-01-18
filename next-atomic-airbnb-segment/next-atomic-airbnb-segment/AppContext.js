@@ -18,8 +18,12 @@ const SearchResultsProvider = (props) => {
   const [destinationId, setDestinationId] = useState('');  
   const [propertiesList, setPropertiesList] = useState([]);
   const [showLoading, setShowLoading] = useState(true);
-  const [showModal, setShowModal] = useState(false);  
+  const [showModal, setShowModal] = useState(false); 
+  const [showSignIn, setShowSignIn] = useState(false);   
   const [idFetched, setIdFetched] = useState(false);
+  const [propertySelected, setPropertySelected] = useState('');
+  const [infoWindowID, setInfoWindowId] = useState('');
+  const [showInfoWindow, setShowInfo] = useState(false);
   
   const router = useRouter();
   const href = '/SearchResults';
@@ -29,11 +33,23 @@ const SearchResultsProvider = (props) => {
 
     e.preventDefault();
 
-    setSearchRequest({...searchRequest, [e.target.name]: e.target.value});
+    setSearchRequest({...searchRequest, [e.target.name]: e.target.value.trim()});
 
   };
 
-  const destinationIdRequest = (destination) => {
+      
+  const searchHandler = (e) => {
+
+    e.preventDefault();
+
+    destinationIdRequest(searchRequest.destination);
+
+    router.push(href);
+
+  }; 
+
+
+  function  destinationIdRequest (destination) {
 
     fetch(`https://hotels4.p.rapidapi.com/locations/search?${new URLSearchParams({
       "query": destination,
@@ -55,14 +71,6 @@ const SearchResultsProvider = (props) => {
 
   };
 
-    
-  const searchHandler = (e) => {
-
-    e.preventDefault();
-
-    destinationIdRequest(searchRequest.destination);
-
-  }; 
 
   useEffect( () => {
 
@@ -73,9 +81,7 @@ const SearchResultsProvider = (props) => {
   }, [idFetched]);
 
 
-  const fetchPropertiesList = () => {
-
-    console.log(5);
+  function fetchPropertiesList () {
 
     fetch(`https://hotels4.p.rapidapi.com/properties/list?${new URLSearchParams({
       "destinationId": destinationId,
@@ -102,20 +108,11 @@ const SearchResultsProvider = (props) => {
           setPropertiesList(json.data.body.searchResults.results);
           setShowLoading(false);
 
-          router.push(href);
-
       })
       .catch((error) => console.log(error))
 
   }
- 
-  const checkInDate = new Date("2020-01-08");
-  const checkOutDate = new Date("2020-01-15");
 
-  const checkInShort = checkInDate.toLocaleString('default', {month: 'short', day: 'numeric'})
-  const checkOutShort = checkOutDate.toLocaleString('default', {month: 'short', day: 'numeric'})
-
-  const adult = searchRequest.adult;
 
   const modalHandler = (e) => {
 
@@ -129,13 +126,74 @@ const SearchResultsProvider = (props) => {
     
   };
 
+  const signInHandler = (e) => {
+
+    e.preventDefault();
+
+    if (showSignIn) {
+      setShowSignIn(false);
+    } else {
+      setShowSignIn(true);
+    }
+    
+  };
+   
+  const checkInDate = new Date(searchRequest.checkIn);
+  const checkOutDate = new Date(searchRequest.checkOut);
+
+  const checkInShort = checkInDate.toLocaleString('default', {month: 'short', day: 'numeric'})
+  const checkOutShort = checkOutDate.toLocaleString('default', {month: 'short', day: 'numeric'})
+
+  const adult = searchRequest.adult;
+
+  const cardSelectedHandler = (e) => {
+
+      e.preventDefault();
+
+      console.log(e.currentTarget.id);
+
+      setPropertySelected(e.currentTarget.id);
+
+  }
+
+  const markerSelectedHandler = (e) => {
+
+    if(e.currentTarget.title) {
+
+      console.log(e.currentTarget);
+          
+      console.log(e.currentTarget.title);
+
+      const id = e.currentTarget.title;
+      console.log(id);
+
+      e.preventDefault();
+
+      setInfoWindowId(id);
+      setShowInfo(true);
+
+      console.log(infoWindowID);
+
+    }
+    
+  }
+
   console.log(idFetched);
+
+  console.log(checkInDate);
+  console.log(checkOutDate);
+  console.log(checkInShort);
+  console.log(checkOutShort);
+  console.log(adult);
 
   console.log(destinationId);
   console.log(showLoading);
   console.log(destination);
   console.log(searchRequest);
   console.log(propertiesList);
+  console.log(showInfoWindow);
+  console.log(infoWindowID);
+  console.log('********');
 
   return (
     <SearchResultsContext.Provider value = { {
@@ -147,8 +205,15 @@ const SearchResultsProvider = (props) => {
       showLoading,
       modalHandler,
       showModal,
+      signInHandler,
+      showSignIn,
       searchHandler,
       inputValueHandler,
+      cardSelectedHandler,
+      propertySelected,
+      markerSelectedHandler,
+      showInfoWindow,
+      infoWindowID
     }}>
       {props.children}
     </SearchResultsContext.Provider> 

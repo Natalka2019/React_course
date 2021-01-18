@@ -1,10 +1,13 @@
-import React from 'react';
+import React, {useContext} from 'react';
 
 import styles from './SearchResultsTemplate.module.css';
 
 import {SearchResultsPageHeader, PropertiesListSection, Map} from '../../organisms';
+import {SearchResultsContext} from '../../../AppContext';
 
 const SearchResultsTemplate = () => {
+
+  const {showLoading} = useContext(SearchResultsContext);
   
   return (
 
@@ -15,14 +18,14 @@ const SearchResultsTemplate = () => {
       <div className = {styles.propertiesListSectionContainer}>
         <PropertiesListSection />
       </div>
-      <div className = {styles.mapContainer}>
-        <Map 
-          googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
-          loadingElement={<div style={{ height: `100%`}} />}
-          containerElement={<div style={{ height: `90vh`}} />}
-          mapElement={<div style={{ height: `100%`}} />} />
-      </div>
-
+      {!showLoading && 
+        <div className = {styles.mapContainer}>
+          <Map 
+            googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
+            loadingElement={<div style={{ height: `100%`}} />}
+            containerElement={<div style={{ height: `90vh`}} />}
+            mapElement={<div style={{ height: `100%`}} />} />
+      </div>}
     </>
 
   )

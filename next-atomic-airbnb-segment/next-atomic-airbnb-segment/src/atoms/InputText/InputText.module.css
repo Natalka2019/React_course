@@ -6,3 +6,15 @@
   outline: none;
   width: 150px;
 }
+
+@media (max-width: 1000px) {
+  .InputText {
+    text-overflow: ellipsis; 
+    width: 80px;
+  }
+}
+@media (max-width: 770px) {
+  .InputText {
+    width: 150px;
+  }
+}

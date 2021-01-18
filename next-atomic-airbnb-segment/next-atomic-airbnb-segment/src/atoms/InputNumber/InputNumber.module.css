@@ -5,4 +5,17 @@
   padding: 5px 0;
   outline: none;
   width: 100px;
+  color: rgba(135,135,135);
+}
+
+@media (max-width: 1000px) {
+  .InputNumber {
+    text-overflow: ellipsis; 
+    width: 80px;
+  }
+}
+@media (max-width: 770px) {
+  .InputNumber {
+    width: 150px;
+  }
 }

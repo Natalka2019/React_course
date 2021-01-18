@@ -1,13 +1,14 @@
 .container {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  align-items: space-between;
   flex-wrap: wrap;
   width: 100%;
   padding: 50px 20px 20px 20px;
 }
 .leftContainer,
 .rightContainer {
-  width: 20%;
   display: flex;
   margin-bottom: 20px;
 }
@@ -16,7 +17,6 @@
   justify-content: flex-start;
 }
 .centerContainer{
-  width: 60%;
   display: flex;
   justify-content: center;
 }
@@ -24,13 +24,57 @@
   display: flex;
   justify-content: flex-end;
 }
-@media (max-width: 800px) {
+.login {
+  background-color:  #DDDDDD;
+  padding: 10px 20px;
+  border-radius: 20px;
+  position: absolute;
+  top: 100px;
+  right: 40px;
+  z-index: 1;
+  width: 250px;
+}
+.login  ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.login  ul li{
+  padding: 10px;
+}
+.login  ul li:hover{
+  background-color: rgb(200, 200, 200);
+  border-radius: 3px;
+  transition: all 1s ease;
+}
+.horizontalLine {
+  width: 90%;
+  background-color: rgb(175, 175, 175);
+  height: 2px;
+  border: none;
+  margin: 5px 0;
+}
+
+@media (max-width: 1000px) {
   .centerContainer{
     width: 100%;
     order: 3;
   }
+  .login {
+    top: 120px;
+  }
+}
+@media (max-width: 500px) {
+  .container {
+    padding: 20px;
+  }
   .leftContainer,
   .rightContainer {
-    width: 50%;
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+  }
+  .rightContainer {
+    justify-content: space-between;
   }
 }

@@ -1,8 +1,8 @@
-import React, {useContext} from 'react';
+import React from 'react';
 
 import styles from './Modal.module.css';
 
-import {CloseButton, TitleText, PlainText} from '../../atoms';
+import {CloseButton, TitleText} from '../../atoms';
 
 const Modal = ({showModal, modalHandler}) => {
 

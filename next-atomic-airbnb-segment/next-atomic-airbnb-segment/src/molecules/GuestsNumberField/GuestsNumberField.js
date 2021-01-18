@@ -13,11 +13,8 @@ const GuestsNumberField = () => {
 
     <div className = {styles.GuestsNumberField }>
       <label className = {styles.label}>Guests<br/>
-        <InputNumber type = 'number'
+        <InputNumber 
           name = 'adult'
-          min = '1'
-          max = '4'
-          placeholder = 'Add guests'
           onChangeHandler = {inputValueHandler}/>
       </label>
     </div>

@@ -7,8 +7,10 @@
 }
 .LocationSearchField:hover {
   cursor: pointer;
-  background-color: rgba(0, 0, 0, 0.18);
+  background-color: #DDDDDD;
   transition: background-color 0.2s ease;
+  margin: -3px -20px -3px 0;
+  padding: 3px 50px 3px 30px;
 }
 .label {
   box-sizing: border-box;
@@ -23,5 +25,20 @@
   padding: 10px;
   pointer-events: auto;
   text-align: left;
+}
+@media (max-width: 1000px) {
+  .LocationSearchField {
+    padding: 0;
+
+  }
+}
+@media (max-width: 770px) {
+  .LocationSearchField {
+    padding: 0 30px;
+  }
+  .LocationSearchField:hover {
+    margin: 0 0 -5px 0;
+    padding: 0 30px 5px 30px;
+  }
 }
 

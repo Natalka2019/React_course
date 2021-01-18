@@ -10,3 +10,5 @@ export {default as CloseButton} from './CloseButton/CloseButton';
 export {default as InputText} from './InputText/InputText';
 export {default as InputDate} from './InputDate/InputDate';
 export {default as InputNumber} from './InputNumber/InputNumber';
+export {default as Button} from './Button/Button';
+export {default as ButtonUser} from './ButtonUser/ButtonUser';

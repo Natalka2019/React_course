@@ -6,7 +6,7 @@ import {Photo, TitleText, PlainText} from '../../atoms';
 
 const PropertyCard = (props) => {
 
-  const {thumbnailUrl, address, name, guestReviews, ratePlan} = props;
+  const {thumbnailUrl, address, name, guestReviews, ratePlan, id, cardSelectedHandler} = props;
   const {countryName, locality, region, streetAddress} = address;
   const {badgeText, rating} = guestReviews;
   const {features, price} = ratePlan;
@@ -33,7 +33,9 @@ const PropertyCard = (props) => {
   };
 
   return (
-    <div className = {styles.PropertyCard}>
+    <div className = {styles.PropertyCard}
+      id = {id}
+      onMouseEnter = {e => cardSelectedHandler(e)}>
       <div className = {styles.PropertyCardDetails}>
         <Photo thumbnailUrl = {thumbnailUrl} name = {name}/>
         <div className = {styles.propertyDescription}>
