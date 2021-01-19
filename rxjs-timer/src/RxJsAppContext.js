@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Observable} from 'rxjs';
+import {Observable, fromEvent } from 'rxjs';
 
 const RxJsTimerContext = React.createContext();
 
@@ -15,50 +15,61 @@ const RxJsTimerProvider = (props) => {
   });
 
 
-  const startStopTimerHandler = (e) => {
+  useEffect( () => {
 
-    e.preventDefault();
+    const startStop = document.querySelector('#startStop');
+    const reset = document.querySelector('#reset');
+    const wait = document.querySelector('#wait');
 
-    if (isActive) {
+    const startStopTimerHandler = fromEvent(startStop, 'click');
+    const resetHandler = fromEvent(reset, 'click');
+    const waitHandler = fromEvent(wait, 'click');
 
-      setIsActive(false);
+    startStopTimerHandler.subscribe( (e) => {
+      
+      e.preventDefault();
+
+      if (isActive) {
+        
+        setIsActive(false);
+        clearTime();
+
+      } else {
+
+        setIsActive(true);
+
+      }
+
+    });
+
+
+    resetHandler.subscribe( (e) => {
+      
+      e.preventDefault();
       clearTime();
 
-    } else {
-
-      setIsActive(true)
-
-    }
-
-  };
+    });
 
 
-  const resetHandler = (e) => {
+    waitHandler.subscribe( (e) => {
+      
+      e.preventDefault();
+  
+      let lastClick = currentTime;
+      let newDate = new Date();
+      let newTime = newDate.getTime();
+  
+      if (newTime - lastClick < 300) {
+  
+        setIsActive(false);
+  
+      }
+  
+      setCurrentTime(newTime);
 
-    e.preventDefault();
-    clearTime();
+    });
 
-  };
-
-
-  const waitHandler = (e) => {
-
-    e.preventDefault();
-
-    let lastClick = currentTime;
-    let newDate = new Date();
-    let newTime = newDate.getTime();
-
-    if (newTime - lastClick < 300) {
-
-      setIsActive(false);
-
-    }
-
-    setCurrentTime(newTime);
-
-  }
-
+  }, [isActive, currentTime]);
 
   useEffect( () => {
 
@@ -68,7 +79,7 @@ const RxJsTimerProvider = (props) => {
 
         const observable = new Observable( () => {
 
-          intervalID = setTimeout( () => {
+          intervalID = setInterval( () => {
 
             const secondCounter = counter % 60;
             const minuteCounter = Math.floor(counter / 60);
@@ -93,7 +104,7 @@ const RxJsTimerProvider = (props) => {
         observable.subscribe();
       }
 
-      return () => clearTimeout(intervalID);
+      return () => clearInterval(intervalID);
 
   }, [isActive, counter]);
 
@@ -113,10 +124,7 @@ const RxJsTimerProvider = (props) => {
 
   return (
     <RxJsTimerContext.Provider value = { {
-      time,
-      startStopTimerHandler,
-      resetHandler,
-      waitHandler,
+      time
     }}>
       {props.children}
     </RxJsTimerContext.Provider>
