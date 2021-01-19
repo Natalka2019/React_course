@@ -1,6 +1,7 @@
 import React, {useContext} from 'react';
 
 import {TimerContext} from './AppContext';
+import './Styles.css';
 
 function TimerContainer() {
 
@@ -11,9 +12,9 @@ function TimerContainer() {
 
   return (
     <div className="TimerContainer">
-      <button onClick = {e => startStopTimerHandler(e)}>Start/Stop</button>
-      <button onClick = {e => waitHandler(e)}>Wait</button>
-      <button onClick = {e => resetHandler(e)}>Reset</button>
+      <button className = 'button green' onClick = {e => startStopTimerHandler(e)}>Start/Stop</button>
+      <button className = 'button green' onClick = {e => waitHandler(e)}>Wait</button>
+      <button className = 'button green' onClick = {e => resetHandler(e)}>Reset</button>
       <h1><span>{hours}</span>:<span>{minutes}</span>:<span>{seconds}</span></h1>
     </div>
   );

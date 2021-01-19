@@ -13,21 +13,20 @@ const TimerProvider = (props) => {
     hours: '00',
   });
 
+
   const startStopTimerHandler = (e) => {
 
     e.preventDefault();
 
     if (isActive) {
-      setIsActive(false);
-      setTime({
-        seconds: '00',
-        minutes: '00',
-        hours: '00',
-      });
 
-      setCounter(0);
+      setIsActive(false);
+      clearTime();
+
     } else {
+
       setIsActive(true)
+
     }
   };
 
@@ -35,16 +34,10 @@ const TimerProvider = (props) => {
   const resetHandler = (e) => {
 
     e.preventDefault();
-
-      setTime({
-        seconds: '00',
-        minutes: '00',
-        hours: '00',
-      });
-
-      setCounter(0);
+    clearTime();
 
   };
+  
 
   const waitHandler = (e) => {
 
@@ -95,6 +88,19 @@ const TimerProvider = (props) => {
       return () => clearInterval(intervalID);
 
   }, [isActive, counter]);
+
+
+  const clearTime = () => {
+
+    setTime({
+      seconds: '00',
+      minutes: '00',
+      hours: '00',
+    });
+
+    setCounter(0);
+
+  };
 
 
   return (

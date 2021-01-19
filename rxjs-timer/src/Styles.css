@@ -1,0 +1,19 @@
+.TimerContainer {
+  border: 2px solid blue;
+  width: 300px;
+  margin: auto;
+  border-radius: 20px;
+}
+.button {
+  text-align: center;
+  font-size:18px;
+  padding: 5px 10px;
+  margin: 10px;
+  border: 1px solid blue;
+  border-radius: 20px;
+  background-color: lightblue;
+}
+.green {
+  border: 1px solid green;
+  background-color: lightgreen;
+}
