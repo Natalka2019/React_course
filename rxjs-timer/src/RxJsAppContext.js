@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {fromEvent, timer} from 'rxjs';
+import {buffer, filter, throttleTime} from 'rxjs/operators';
 
 const RxJsTimerContext = React.createContext();
 
 const RxJsTimerProvider = (props) => {
 
-  const [currentTime, setCurrentTime] = useState(0);
   const [isActive, setIsActive] = useState(false);
   const [counter, setCounter] = useState(0);
   const [time, setTime] = useState({
@@ -23,7 +23,7 @@ const RxJsTimerProvider = (props) => {
 
     const startStopTimerHandler = fromEvent(startStop, 'click');
     const resetHandler = fromEvent(reset, 'click');
-    const waitHandler = fromEvent(wait, 'click');
+    const clicks$ = fromEvent(wait, 'click');
 
     const subscriptionStartStop = startStopTimerHandler.subscribe( (e) => {
       
@@ -51,23 +51,18 @@ const RxJsTimerProvider = (props) => {
     });
 
 
-    const subscriptionWait = waitHandler.subscribe( (e) => {
+    const subscriptionWait = clicks$.subscribe( (e) => {
       
       e.preventDefault();
-  
-      let lastClick = currentTime;
-      let newDate = new Date();
-      let newTime = newDate.getTime();
-  
-      if (newTime - lastClick < 300) {
-  
-        setIsActive(false);
-  
-      }
-  
-      setCurrentTime(newTime);
-
+        
+      clicks$.pipe(
+        buffer(clicks$.pipe(throttleTime(300))),
+        filter(clickArray => clickArray.length > 1)
+      )
+        .subscribe(() => setIsActive(false));
+      
     });
+
 
     return () => {
 
@@ -76,7 +71,7 @@ const RxJsTimerProvider = (props) => {
       subscriptionWait.unsubscribe();
     };  
 
-  }, [isActive, currentTime]);
+  }, [isActive]);
 
   useEffect( () => {
 
