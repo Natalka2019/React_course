@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Observable, fromEvent } from 'rxjs';
+import {fromEvent, timer} from 'rxjs';
 
 const RxJsTimerContext = React.createContext();
 
@@ -25,7 +25,7 @@ const RxJsTimerProvider = (props) => {
     const resetHandler = fromEvent(reset, 'click');
     const waitHandler = fromEvent(wait, 'click');
 
-    startStopTimerHandler.subscribe( (e) => {
+    const subscriptionStartStop = startStopTimerHandler.subscribe( (e) => {
       
       e.preventDefault();
 
@@ -43,7 +43,7 @@ const RxJsTimerProvider = (props) => {
     });
 
 
-    resetHandler.subscribe( (e) => {
+    const subscriptionReset = resetHandler.subscribe( (e) => {
       
       e.preventDefault();
       clearTime();
@@ -51,7 +51,7 @@ const RxJsTimerProvider = (props) => {
     });
 
 
-    waitHandler.subscribe( (e) => {
+    const subscriptionWait = waitHandler.subscribe( (e) => {
       
       e.preventDefault();
   
@@ -69,42 +69,44 @@ const RxJsTimerProvider = (props) => {
 
     });
 
+    return () => {
+
+      subscriptionStartStop.unsubscribe();
+      subscriptionReset.unsubscribe();
+      subscriptionWait.unsubscribe();
+    };  
+
   }, [isActive, currentTime]);
 
   useEffect( () => {
 
-    let intervalID;
+    if (isActive) {
 
-      if (isActive) {
+      const source = timer(1000);
 
-        const observable = new Observable( () => {
+      const tick = source.subscribe( () => {
 
-          intervalID = setInterval( () => {
+        const secondCounter = counter % 60;
+        const minuteCounter = Math.floor(counter / 60);
+        const hourCounter = Math.floor(counter / 60 / 60);
 
-            const secondCounter = counter % 60;
-            const minuteCounter = Math.floor(counter / 60);
-            const hourCounter = Math.floor(counter / 60 / 60);
-  
-            const computedSecond = String(secondCounter).length === 1 ? `0${secondCounter}`: `${secondCounter}`;
-            const computedMinute = String(minuteCounter).length === 1 ? `0${minuteCounter}`: `${minuteCounter}`;
-            const computedHour = String(hourCounter).length === 1 ? `0${hourCounter}`: `${hourCounter}`;
-  
-            setTime({
-              seconds: computedSecond,
-              minutes: computedMinute,
-              hours: computedHour,
-            });
-  
-            setCounter(counter => counter +1);
-  
-          }, 1000);
-  
+        const computedSecond = String(secondCounter).length === 1 ? `0${secondCounter}`: `${secondCounter}`;
+        const computedMinute = String(minuteCounter).length === 1 ? `0${minuteCounter}`: `${minuteCounter}`;
+        const computedHour = String(hourCounter).length === 1 ? `0${hourCounter}`: `${hourCounter}`;
+
+        setTime({
+          seconds: computedSecond,
+          minutes: computedMinute,
+          hours: computedHour,
         });
-  
-        observable.subscribe();
-      }
 
-      return () => clearInterval(intervalID);
+        setCounter(counter => counter +1);
+
+      });
+
+      return () => tick.unsubscribe();
+
+    }
 
   }, [isActive, counter]);
 
