@@ -9,17 +9,17 @@ const DateSearchField = ({label, name}) => {
 
   const {inputValueHandler} = useContext(SearchResultsContext);
 
-    return (
+  return (
 
-      <div className = {styles.DateSearchField}>
-        <label className = {styles.label}>{label}
-          <InputDate placeholder = 'Add dates'
-            name = {name}
-            onChangeHandler = {inputValueHandler}/>
-        </label>
-      </div>
-      
-    )
+    <div className = {styles.DateSearchField}>
+      <label className = {styles.label}>{label}
+        <InputDate placeholder = 'Add dates'
+          name = {name}
+          onChangeHandler = {inputValueHandler}/>
+      </label>
+    </div>
+    
+  )
 
 };
 

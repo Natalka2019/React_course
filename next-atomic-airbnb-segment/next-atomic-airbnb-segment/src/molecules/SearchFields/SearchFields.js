@@ -16,6 +16,6 @@ const SearchFields = ({destination, checkInShort, checkOutShort, adult}) => (
       <SearchButton>Search</SearchButton>
     </div>
     
-  );
+);
 
 export default SearchFields;

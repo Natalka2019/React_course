@@ -12,9 +12,10 @@ const PropertiesListSection = () => {
 
   const memoizedPropertyCards = useMemo( () => propertiesList.map( (property) => (
     <PropertyCard
-    {...property}
-    key = {property.id}
-    cardSelectedHandler = {cardSelectedHandler} />
+      {...property}
+      key = {property.id}
+      cardSelectedHandler = {cardSelectedHandler}
+    />
   )), [propertiesList]);
 
   return (

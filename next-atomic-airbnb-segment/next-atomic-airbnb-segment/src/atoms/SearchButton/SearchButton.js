@@ -6,6 +6,7 @@ const SearchButton = ({children, onClickHandler}) => (
   <p className = {styles.SearchButton}
     onClick = {(e) => onClickHandler(e)}>
     {children}
-  </p>);
+  </p>
+);
 
 export default SearchButton;

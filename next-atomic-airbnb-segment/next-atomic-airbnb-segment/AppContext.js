@@ -24,7 +24,7 @@ const SearchResultsProvider = (props) => {
   const [propertySelected, setPropertySelected] = useState('');
   const [infoWindowID, setInfoWindowId] = useState('');
   const [showInfoWindow, setShowInfo] = useState(false);
-  
+
   const router = useRouter();
   const href = '/SearchResults';
 
@@ -96,7 +96,8 @@ const SearchResultsProvider = (props) => {
     })}`, {
       method: 'GET',
       headers: {
-        "x-rapidapi-key": "2cfaa32eb3msh350d9bcfdaba73bp17210cjsn5488defdc617",
+        //"x-rapidapi-key": "2cfaa32eb3msh350d9bcfdaba73bp17210cjsn5488defdc617", - to use after Jan 2021
+        "x-rapidapi-key": "ef6aa709c6msh59ea8aef79713cbp1df7c5jsn167c2866f9b9",
         "x-rapidapi-host": "hotels4.p.rapidapi.com",
         "useQueryString": true
       }
@@ -104,9 +105,9 @@ const SearchResultsProvider = (props) => {
       .then(data => data.json())
       .then(json => {
 
-          setDestination(json.data.body.header.split(',')[0]);
-          setPropertiesList(json.data.body.searchResults.results);
-          setShowLoading(false);
+        setDestination(json.data.body.header.split(',')[0]);
+        setPropertiesList(json.data.body.searchResults.results);
+        setShowLoading(false);
 
       })
       .catch((error) => console.log(error))
@@ -150,50 +151,33 @@ const SearchResultsProvider = (props) => {
 
       e.preventDefault();
 
-      console.log(e.currentTarget.id);
-
       setPropertySelected(e.currentTarget.id);
 
   }
 
+
   const markerSelectedHandler = (e) => {
 
-    if(e.currentTarget.title) {
+    try {
+      if(e.currentTarget.title) {
+  
+        const id = e.currentTarget.title;
+  
+        e.preventDefault();
+  
+        setInfoWindowId(id);
+  
+        setShowInfo(!showInfoWindow);
+  
+      }
+    } catch(error) {
 
-      console.log(e.currentTarget);
-          
-      console.log(e.currentTarget.title);
-
-      const id = e.currentTarget.title;
-      console.log(id);
-
-      e.preventDefault();
-
-      setInfoWindowId(id);
-      setShowInfo(true);
-
-      console.log(infoWindowID);
+      console.log(error);
 
     }
-    
+ 
   }
 
-  console.log(idFetched);
-
-  console.log(checkInDate);
-  console.log(checkOutDate);
-  console.log(checkInShort);
-  console.log(checkOutShort);
-  console.log(adult);
-
-  console.log(destinationId);
-  console.log(showLoading);
-  console.log(destination);
-  console.log(searchRequest);
-  console.log(propertiesList);
-  console.log(showInfoWindow);
-  console.log(infoWindowID);
-  console.log('********');
 
   return (
     <SearchResultsContext.Provider value = { {
@@ -213,7 +197,7 @@ const SearchResultsProvider = (props) => {
       propertySelected,
       markerSelectedHandler,
       showInfoWindow,
-      infoWindowID
+      infoWindowID,
     }}>
       {props.children}
     </SearchResultsContext.Provider> 

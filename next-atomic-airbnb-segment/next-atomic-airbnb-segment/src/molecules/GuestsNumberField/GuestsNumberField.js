@@ -19,6 +19,7 @@ const GuestsNumberField = () => {
       </label>
     </div>
     
-  )};
+  )
+};
 
 export default GuestsNumberField;

@@ -3,7 +3,7 @@ import React, {useContext} from 'react';
 import styles from './SearchPageHeader.module.css';
 
 import {SearchResultsContext} from '../../../AppContext';
-import {Logo, Redirect, Language, Button, ButtonUser} from '../../atoms';
+import {Logo, Redirect, Language, ButtonUser} from '../../atoms';
 import {SearchPageHeaderCenter} from '../../molecules';
 
 const SearchPageHeader = () => {

@@ -3,6 +3,7 @@ import React from 'react';
 import styles from './PropertyCard.module.css';
 
 import {Photo, TitleText, PlainText} from '../../atoms';
+import splitWords from '../../utilities';
 
 const PropertyCard = (props) => {
 
@@ -10,27 +11,7 @@ const PropertyCard = (props) => {
   const {countryName, locality, region, streetAddress} = address;
   const {badgeText, rating} = guestReviews;
   const {features, price} = ratePlan;
-
-  const splitWords = (string) => {
-
-    let splitString = '';
-
-    for (let char of string) {
-
-      if (char !== char.toUpperCase()) {
-        
-        splitString += char; 
-
-      } else {
-        
-        splitString += ` ${char.toLowerCase()}`; 
-
-       }
-    }
-
-    return splitString;
-    
-  };
+  
 
   return (
     <div className = {styles.PropertyCard}

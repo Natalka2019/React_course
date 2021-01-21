@@ -8,6 +8,7 @@ const InputDate = ({placeholder, name, onChangeHandler}) => (
     name = {name}
     className = {styles.InputDate}
     onChange = {onChangeHandler}
-  />);
+  />
+);
 
 export default InputDate;

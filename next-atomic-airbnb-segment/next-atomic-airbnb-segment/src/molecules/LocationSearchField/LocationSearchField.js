@@ -5,7 +5,7 @@ import styles from './LocationSearchField.module.css';
 import {InputText} from '../../atoms';
 import {SearchResultsContext} from '../../../AppContext';
 
-const LocationSearchField = ({type}) => {
+const LocationSearchField = () => {
   
   const {inputValueHandler} = useContext(SearchResultsContext);
   
@@ -21,6 +21,7 @@ const LocationSearchField = ({type}) => {
       </label>
     </div>
     
-  )};
+  )
+};
 
 export default LocationSearchField;
