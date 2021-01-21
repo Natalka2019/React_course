@@ -11,7 +11,7 @@ import styles from './Map.module.css';
 
 const Map = withScriptjs(withGoogleMap(() => {
 
-  const {propertiesList, propertySelected, markerSelectedHandler, showInfoWindow, infoWindowID } = useContext(SearchResultsContext);
+  const {propertiesList, propertySelected, markerSelectedHandler, showInfoWindow, infoWindowID, markerHoverHandler } = useContext(SearchResultsContext);
   
   const defaultCenter =  {
     lat: propertiesList[12].coordinate.lat,
@@ -44,8 +44,9 @@ const Map = withScriptjs(withGoogleMap(() => {
               title={property.id.toString()}
               onClick = { (e) => markerSelectedHandler(e) }
               onCloseClick= { (e) => markerSelectedHandler(e) }
+              onMouseOver = {(e) => markerHoverHandler(e)}
             >
-              <div >{property.ratePlan.price.current}</div>
+              <div title={property.id.toString()}>{property.ratePlan.price.current}</div>
             </MarkerWithLabel>
           )
         )}  

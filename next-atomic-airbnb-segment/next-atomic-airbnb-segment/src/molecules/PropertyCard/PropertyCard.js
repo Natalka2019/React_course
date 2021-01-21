@@ -1,22 +1,36 @@
-import React from 'react';
+import React, {useContext, useRef} from 'react';
 
 import styles from './PropertyCard.module.css';
 
 import {Photo, TitleText, PlainText} from '../../atoms';
 import splitWords from '../../utilities';
+import {SearchResultsContext} from '../../../AppContext';
 
 const PropertyCard = (props) => {
 
-  const {thumbnailUrl, address, name, guestReviews, ratePlan, id, cardSelectedHandler} = props;
+  const {markerHover} = useContext(SearchResultsContext);
+
+  const {thumbnailUrl, address, name, guestReviews, ratePlan, id, cardSelectedHandler, cardDeselectedHandler} = props;
   const {countryName, locality, region, streetAddress} = address;
   const {badgeText, rating} = guestReviews;
   const {features, price} = ratePlan;
-  
+
+  const cardRef = useRef();
+
+  const className = markerHover == id? styles.PropertyCardSelected : styles.PropertyCard;
+
+  if (markerHover == id) {
+
+      cardRef.current.scrollIntoView( {behavior: 'smooth'} );
+
+  };
 
   return (
-    <div className = {styles.PropertyCard}
+    <div className = {className}
       id = {id}
-      onMouseEnter = {e => cardSelectedHandler(e)}>
+      ref = {cardRef}
+      onMouseEnter = {e => cardSelectedHandler(e)}
+      onMouseLeave = {e => cardDeselectedHandler(e)}>
       <div className = {styles.PropertyCardDetails}>
         <Photo thumbnailUrl = {thumbnailUrl} name = {name}/>
         <div className = {styles.propertyDescription}>

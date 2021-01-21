@@ -8,13 +8,14 @@ import {PropertyCard} from '../../molecules';
 
 const PropertiesListSection = () => {
 
-  const {destination, propertiesList, checkInShort, checkOutShort, adult, cardSelectedHandler} = useContext(SearchResultsContext);
+  const {destination, propertiesList, checkInShort, checkOutShort, adult, cardSelectedHandler, cardDeselectedHandler} = useContext(SearchResultsContext);
 
   const memoizedPropertyCards = useMemo( () => propertiesList.map( (property) => (
     <PropertyCard
       {...property}
       key = {property.id}
       cardSelectedHandler = {cardSelectedHandler}
+      cardDeselectedHandler = {cardDeselectedHandler}
     />
   )), [propertiesList]);
 

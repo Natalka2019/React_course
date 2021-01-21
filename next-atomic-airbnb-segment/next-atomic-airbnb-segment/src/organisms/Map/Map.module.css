@@ -5,9 +5,6 @@
   border-radius: 30px;
   margin: 20px;
 }
-.label:hover {
-  background-color: green
-}
 .labelSelected {
   background-color:black;
   color: white;

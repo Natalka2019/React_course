@@ -22,6 +22,7 @@ const SearchResultsProvider = (props) => {
   const [showSignIn, setShowSignIn] = useState(false);   
   const [idFetched, setIdFetched] = useState(false);
   const [propertySelected, setPropertySelected] = useState('');
+  const [markerHover, setMarkerHover] = useState('');
   const [infoWindowID, setInfoWindowId] = useState('');
   const [showInfoWindow, setShowInfo] = useState(false);
 
@@ -155,10 +156,57 @@ const SearchResultsProvider = (props) => {
 
   }
 
+  const cardDeselectedHandler = (e) => {
+
+    e.preventDefault();
+
+    setPropertySelected('');
+
+  };
+
+  const markerHoverHandler = (e) => {
+
+    try {
+
+      if(e.currentTarget.title) {
+  
+        const id = e.currentTarget.title;
+  
+        e.preventDefault();
+  
+        setMarkerHover(id);
+
+      }
+
+    } catch(error) {
+
+      console.log(error);
+
+    }
+ 
+
+    // console.log(title);
+
+    // console.log(e);
+    // //console.log(e.relatedTarget);
+    // console.log(e.currentTarget);
+    // console.log(e.target);
+    // console.log(e.target.title);
+    // //console.log(e.currentTarget.title);
+
+    // console.dir(e);
+    // console.dir(e.currentTarget);
+
+    // //setMarkerHover(e.currentTarget.id);
+
+    // setMarkerHover(title);
+
+  }
 
   const markerSelectedHandler = (e) => {
 
     try {
+
       if(e.currentTarget.title) {
   
         const id = e.currentTarget.title;
@@ -170,6 +218,7 @@ const SearchResultsProvider = (props) => {
         setShowInfo(!showInfoWindow);
   
       }
+
     } catch(error) {
 
       console.log(error);
@@ -177,6 +226,8 @@ const SearchResultsProvider = (props) => {
     }
  
   }
+
+  console.log(markerHover);
 
 
   return (
@@ -194,10 +245,13 @@ const SearchResultsProvider = (props) => {
       searchHandler,
       inputValueHandler,
       cardSelectedHandler,
+      cardDeselectedHandler,
       propertySelected,
       markerSelectedHandler,
       showInfoWindow,
       infoWindowID,
+      markerHoverHandler,
+      markerHover
     }}>
       {props.children}
     </SearchResultsContext.Provider> 

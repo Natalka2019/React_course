@@ -5,6 +5,13 @@
   font-size: 14px;
   color: rgb(113, 113, 113)
 }
+.PropertyCardSelected {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  font-size: 14px;
+  background-color: rgb(200, 200, 200)
+}
 .PropertyCardDetails {
   display: flex;
   flex-direction: row;
