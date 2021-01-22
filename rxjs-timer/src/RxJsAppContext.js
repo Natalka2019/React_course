@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import {fromEvent, timer} from 'rxjs';
 import {buffer, filter, throttleTime} from 'rxjs/operators';
 
@@ -14,16 +14,16 @@ const RxJsTimerProvider = (props) => {
     hours: '00',
   });
 
+  const startStop = useRef();
+  const reset = useRef();
+  const wait = useRef();
+  
 
   useEffect( () => {
 
-    const startStop = document.querySelector('#startStop');
-    const reset = document.querySelector('#reset');
-    const wait = document.querySelector('#wait');
-
-    const startStopTimerHandler = fromEvent(startStop, 'click');
-    const resetHandler = fromEvent(reset, 'click');
-    const clicks$ = fromEvent(wait, 'click');
+    const startStopTimerHandler = fromEvent(startStop.current, 'click');
+    const resetHandler = fromEvent(reset.current, 'click');
+    const clicks$ = fromEvent(wait.current, 'click');
 
     const subscriptionStartStop = startStopTimerHandler.subscribe( (e) => {
       
@@ -121,7 +121,10 @@ const RxJsTimerProvider = (props) => {
 
   return (
     <RxJsTimerContext.Provider value = { {
-      time
+      time,
+      startStop,
+      reset,
+      wait
     }}>
       {props.children}
     </RxJsTimerContext.Provider>
